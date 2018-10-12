@@ -16,4 +16,5 @@ public class SlackBotApplication {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
 }
