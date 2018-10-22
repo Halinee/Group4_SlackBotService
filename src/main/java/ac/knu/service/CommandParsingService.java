@@ -1,6 +1,6 @@
 package ac.knu.service;
 
-import ac.knu.service.exception.UnprocessableCommandException;
+import ac.knu.service.Exception.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,9 +19,9 @@ public class CommandParsingService {
         possibleCommand.add("Find");
     }
 
-    public String parseCommand(HashMap<String, Friend> database, String commandLine) throws UnprocessableCommandException {
+    public String parseCommand(HashMap<String, Friend> database, String commandLine) throws UnprocessableCommandException, FriendDataBaseEmptyError, NotFoundException, EmptyListException, WrongNameException, FriendAddGenderParameterError, FriendAddAgeParameterError, FriendDataBaseSizeOver, FriendAlreayNameExist, FriendAddNameParameterError {
 
-        CommandExcuteService excuteService = new CommandExcuteService(database);
+        CommandExecuteService excuteService = new CommandExecuteService(database);
         String[] commandSplit = commandLine.split(" ");
         String command = commandSplit[1];
 

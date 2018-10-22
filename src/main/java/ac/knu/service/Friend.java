@@ -30,17 +30,17 @@ public class Friend {
         this.age = age;
     }
 
-    public int getAge(int age)
+    public int getAge()
     {
         return age;
     }
 
-    public String getName(String name)
+    public String getName()
     {
         return name;
     }
 
-    public Gender getGender(Gender gender)
+    public Gender getGender()
     {
         return gender;
     }
