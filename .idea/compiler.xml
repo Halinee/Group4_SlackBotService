@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Group4_SlackBotService_1" />
         <module name="Group4_SlackBotServicefinish" />
         <module name="slackbot" />
       </profile>

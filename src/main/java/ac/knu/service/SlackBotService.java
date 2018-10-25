@@ -25,8 +25,8 @@ public class SlackBotService extends Bot {
     public void onReceiveDM(WebSocketSession session, Event event) throws UnprocessableCommandException, FriendAddAgeParameterError, WrongNameException, FriendAlreayNameExist, FriendDataBaseEmptyError, EmptyListException, FriendAddNameParameterError, FriendAddGenderParameterError, NotFoundException, FriendDataBaseSizeOver {
         String text = event.getText();
         log.info(text);
-        CommandParsingService commandParsingService = new CommandParsingService();
-        String result = commandParsingService.parseCommand(database,text);
+        CommandParsingAndCallingService commandParsingAndCallingService = new CommandParsingAndCallingService();
+        String result = commandParsingAndCallingService.parseAndCallCommand(database,text);
         reply(session, event, result);
     }
 
