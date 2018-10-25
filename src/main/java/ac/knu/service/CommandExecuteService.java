@@ -15,9 +15,9 @@ public class CommandExecuteService extends Exception {
 
     private String successMessage(String name, String command) {
         if (command.equals("add")) {
-            return name + "이 추가되었습니다.";
+            return name + "이(가) 추가되었습니다.";
         } else {
-            return name + "이 삭제되었습니다.";
+            return name + "이(가) 삭제되었습니다.";
         }
     }
 
@@ -37,9 +37,9 @@ public class CommandExecuteService extends Exception {
 
     public String find(HashMap friendDataBase, String name) {
         if (friendDataBase.containsKey(name))
-            return name + "을 찾았습니다.";
+            return name + "을(를) 찾았습니다.";
         else
-            return name + "을 찾지 못했습니다.";
+            return name + "을(를) 찾지 못했습니다.";
     }
 
     public String add(HashMap friendDataBase, String name, String age, String gender)
@@ -86,8 +86,8 @@ public class CommandExecuteService extends Exception {
             String key = iterator.next();
             Friend friend = (Friend) friendDataBase.get(key);
 
-            friendList.append("name : " + friend.getName() + "age : " + friend.getAge() +
-                    "sex : " + friend.getGender() + "\n");
+            friendList.append("name : " + friend.getName() + " age : " + friend.getAge() +
+                    " sex : " + friend.getGender() + "\n");
         }
         return friendList.toString();
     }

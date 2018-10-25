@@ -22,11 +22,13 @@ import java.util.HashMap;
 public class SlackBotService extends Bot {
     private HashMap<String, Friend> database = new HashMap<>();
     @Controller(events = {EventType.DIRECT_MENTION})
-    public void onReceiveDM(WebSocketSession session, Event event) throws UnprocessableCommandException, FriendAddAgeParameterError, WrongNameException, FriendAlreayNameExist, FriendDataBaseEmptyError, EmptyListException, FriendAddNameParameterError, FriendAddGenderParameterError, NotFoundException, FriendDataBaseSizeOver {
+    public void onReceiveDM(WebSocketSession session, Event event)
+            throws UnprocessableCommandException, FriendAddAgeParameterError, WrongNameException, FriendAlreayNameExist, FriendDataBaseEmptyError, EmptyListException, FriendAddNameParameterError, FriendAddGenderParameterError, NotFoundException, FriendDataBaseSizeOver {
         String text = event.getText();
         log.info(text);
         CommandParsingAndCallingService commandParsingAndCallingService = new CommandParsingAndCallingService();
         String result = commandParsingAndCallingService.parseAndCallCommand(database,text);
+
         reply(session, event, result);
     }
 
