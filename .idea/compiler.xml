@@ -9,6 +9,7 @@
         <module name="Group4_SlackBotService_1" />
         <module name="Group4_SlackBotService_RealFinish" />
         <module name="Group4_SlackBotServicefinish" />
+        <module name="Group4_SlackBotServicerealrealfinish" />
         <module name="slackbot" />
       </profile>
     </annotationProcessing>

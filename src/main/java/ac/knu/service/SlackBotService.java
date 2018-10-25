@@ -28,7 +28,6 @@ public class SlackBotService extends Bot {
         log.info(text);
         CommandParsingAndCallingService commandParsingAndCallingService = new CommandParsingAndCallingService();
         String result = commandParsingAndCallingService.parseAndCallCommand(database,text);
-
         reply(session, event, result);
     }
 

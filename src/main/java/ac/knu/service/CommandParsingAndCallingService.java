@@ -11,6 +11,8 @@ import java.util.List;
 public class CommandParsingAndCallingService {
     private List<String> possibleCommand = new ArrayList<>();
 
+    String errorMessage = "";
+
     public CommandParsingAndCallingService() {
         possibleCommand.add("Time");
         possibleCommand.add("Add");
@@ -20,24 +22,30 @@ public class CommandParsingAndCallingService {
     }
 
     public String parseAndCallCommand(HashMap<String, Friend> database, String commandLine) throws UnprocessableCommandException, FriendDataBaseEmptyError, NotFoundException, EmptyListException, WrongNameException, FriendAddGenderParameterError, FriendAddAgeParameterError, FriendDataBaseSizeOver, FriendAlreayNameExist, FriendAddNameParameterError {
+    try {
 
         CommandExecuteService executeService = new CommandExecuteService(database);
         String[] commandSplit = commandLine.split(" ");
         String command = commandSplit[1];
 
-        switch(command) {
-            case "Time" :
+        switch (command) {
+            case "Time":
                 return executeService.time();
-            case "Add" :
+            case "Add":
                 return executeService.add(database, commandSplit[2], commandSplit[3], commandSplit[4]);
-            case "Remove" :
+            case "Remove":
                 return executeService.remove(database, commandSplit[2]);
-            case "List" :
+            case "List":
                 return executeService.list(database);
-            case "Find" :
+            case "Find":
                 return executeService.find(database, commandSplit[2]);
-            default :
+            default:
                 throw new UnprocessableCommandException();
         }
+    }
+    catch (UnprocessableCommandException e)
+    {
+        return errorMessage = "잘못된 명령어를 입력하셨습니다.\n명령어목록\n친구 추가 : Add 나이 이름 성별\n친구 삭제 : Remove 이름\n친구 찾기 : Find 이름\n친구 목록 : List\n현재 시간 : Time";
+    }
     }
 }
