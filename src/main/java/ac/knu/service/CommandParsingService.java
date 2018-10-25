@@ -23,19 +23,19 @@ public class CommandParsingService {
 
         CommandExecuteService excuteService = new CommandExecuteService(database);
         String[] commandSplit = commandLine.split(" ");
-        String command = commandSplit[1];
+        String command = commandSplit[0];
 
         switch(command) {
             case "Time" :
                 return excuteService.time();
             case "Add" :
-                return excuteService.add(database, commandSplit[2], commandSplit[3], commandSplit[4]);
+                return excuteService.add(database, commandSplit[1], commandSplit[2], commandSplit[3]);
             case "Remove" :
-                return excuteService.remove(database, commandSplit[2]);
+                return excuteService.remove(database, commandSplit[1]);
             case "List" :
                 return excuteService.list(database);
             case "Find" :
-                return excuteService.find(database, commandSplit[2]);
+                return excuteService.find(database, commandSplit[1]);
             default :
                 throw new UnprocessableCommandException();
         }

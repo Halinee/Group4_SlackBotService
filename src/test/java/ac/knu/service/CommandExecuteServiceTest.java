@@ -19,20 +19,20 @@ public class CommandExecuteServiceTest {
         commandExecuteService = new CommandExecuteService(testDataBase);
     }
 
-    @Test
-    public void The_list_is_empty_to_execute_the_remove_command() throws EmptyListException, WrongNameException, NotFoundException {
+    @Test(expected = EmptyListException.class)
+    public void The_list_is_empty_to_execute_the_remove_command() throws NotFoundException, EmptyListException, WrongNameException {
         String result = commandExecuteService.remove(testDataBase, "Jo");
         assertTrue(result.contains("비어있습니다."));
     }
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void The_name_is_not_found_to_execute_the_remove_command() throws NotFoundException, WrongNameException, EmptyListException {
         testDataBase.put("Jo", new Friend("Jo",24,Gender.M));
         String result = commandExecuteService.remove(testDataBase, "Lee");
         assertTrue(result.contains("없습니다"));
     }
 
-    @Test
+    @Test(expected = WrongNameException.class)
     public void The_name_is_wrong_to_execute_the_remove_command() throws WrongNameException, NotFoundException, EmptyListException {
         testDataBase.put("Jo", new Friend("Jo",24,Gender.M));
         String result = commandExecuteService.remove(testDataBase, "55");
@@ -60,7 +60,7 @@ public class CommandExecuteServiceTest {
         assertTrue(result.contains("못했습니다."));
     }
 
-    @Test
+    @Test(expected = FriendDataBaseSizeOver.class)
     public void The_list_is_full_to_execute_add_command() throws FriendAddGenderParameterError, FriendDataBaseSizeOver, FriendAddAgeParameterError, FriendAlreayNameExist, FriendAddNameParameterError {
 
         testDataBase.put("김",new Friend("김",25,Gender.M));
@@ -79,27 +79,26 @@ public class CommandExecuteServiceTest {
         assertTrue(addTest.contains("친구 목록이 꽉 찼습니다."));
     }
 
-    @Test
+    @Test(expected = FriendAlreayNameExist.class)
     public void Name_already_registered_to_execute_add_command() throws FriendAddGenderParameterError, FriendDataBaseSizeOver, FriendAddAgeParameterError, FriendAlreayNameExist, FriendAddNameParameterError {
         testDataBase.put("이승환",new Friend("이승환",25,Gender.M));
-
-        String addTest = commandExecuteService.add(testDataBase,"이승환","24","M");
+        String addTest = commandExecuteService.add(testDataBase,"이승환","25","M");
         assertTrue(addTest.contains("이름이 이미 리스트에 존재합니다."));
     }
 
-    @Test
+    @Test(expected = FriendAddNameParameterError.class)
     public void Enter_the_wrong_name_to_execute_add_command() throws FriendAddGenderParameterError, FriendDataBaseSizeOver, FriendAddAgeParameterError, FriendAlreayNameExist, FriendAddNameParameterError {
         String addTest = commandExecuteService.add(testDataBase,"%%","25","M");
         assertTrue(addTest.contains("이름이 잘못 입력되었습니다."));
     }
 
-    @Test
+    @Test(expected = FriendAddAgeParameterError.class)
     public void Enter_the_wrong_age_to_execute_add_command() throws FriendAddGenderParameterError, FriendDataBaseSizeOver, FriendAddAgeParameterError, FriendAlreayNameExist, FriendAddNameParameterError {
         String addTest = commandExecuteService.add(testDataBase,"이승환","이십","M");
         assertTrue(addTest.contains("나이가 잘못 입력되었습니다."));
     }
 
-    @Test
+    @Test(expected = FriendAddGenderParameterError.class)
     public void Enter_the_wrong_gender_to_execute_add_command() throws FriendAddGenderParameterError, FriendDataBaseSizeOver, FriendAddAgeParameterError, FriendAlreayNameExist, FriendAddNameParameterError {
         String addTest = commandExecuteService.add(testDataBase,"이승환","25","성별테스트");
         assertTrue(addTest.contains("성별이 잘못 입력되었습니다."));
@@ -111,10 +110,10 @@ public class CommandExecuteServiceTest {
         assertTrue(addTest.contains("추가되었습니다."));
     }
 
-    @Test
+    @Test(expected = FriendDataBaseEmptyError.class)
     public void List_is_empty_when_execute_list_command() throws FriendDataBaseEmptyError {
         String addTest = commandExecuteService.list(testDataBase);
-        assertTrue(addTest.contains("친구 목록이 비어있습니다."));
+        assertTrue(addTest.contains("비어있습니다."));
     }
 
     @Test
