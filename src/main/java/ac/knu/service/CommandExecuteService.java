@@ -33,7 +33,6 @@ public class CommandExecuteService extends Exception {
                 friendDataBase.remove(name);
                 return successMessage(name, "remove");
             }
-
     }
 
     public String find(HashMap friendDataBase, String name) {
@@ -53,11 +52,11 @@ public class CommandExecuteService extends Exception {
         } else if (!((Pattern.matches("^[ㄱ-ㅎ가-힣a-zA-Z]*$", name)))) {
             throw new FriendAddNameParameterError();
         }
-        else if ( ( (Pattern.matches("^[ㄱ-ㅎ가-힣a-zA-Z]*$", name)) || (Integer.parseInt((age)) < 0 || Integer.parseInt(age) > 200) )  )
+        else if ( ( (Pattern.matches("^[ㄱ-ㅎ가-힣a-zA-Z]*$", age)) || (Integer.parseInt((age)) < 0 || Integer.parseInt(age) > 200) )  )
         {
             throw new FriendAddAgeParameterError();
         }
-        else if (!(gender.equals(Gender.M) || gender.equals(Gender.F))) {
+        else if(!(gender.equals(Gender.M+"") || gender.equals(Gender.F+""))) {
             throw new FriendAddGenderParameterError();
         }
 
