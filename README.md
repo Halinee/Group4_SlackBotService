@@ -15,3 +15,8 @@ remove(데이터베이스, 이름) : 전달 받은 데이터베이스에서 이�
 find(데이터베이스, 이름) : 전달 받은 데이터베이스에서 이름 검색 후, 결과 반환
 
 list(데이터베이스) : 전달 받은 데이터베이스에 저장되어 있는 목록 반환
+
+
+CommandParsingAndCallingService Class : 입력받은 문자열을 파싱 후 파싱 결과에 맞게 CommandExecuteService의 메소드 호출
+
+parseAndCallCommand(데이터베이스, 입력 명령어) : 문자열 파싱 후, 명령어를 추출하여 명령어에 해당하는 CommandExecuteService의 메소드 호출
